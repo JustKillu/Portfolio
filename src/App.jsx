@@ -5,7 +5,6 @@ import Skills from './sections/Skills';
 function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
-      {/* Puedes añadir un Navbar aquí arriba más tarde */}
       <main>
         <Hero />
         <Skills />
