@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://github.com/KilluCorporation/Portfolio-JustKillu",
+  "homepage": "https://github.io",
 "scripts": {
   "dev": "vite",
   "build": "vite build",
