@@ -1,1 +1,51 @@
 @import "tailwindcss";
+
+@layer utilities {
+
+  /* ROLE ANIMATIONS */
+  @keyframes roleA {
+    0%, 55%, 100% { transform: scaleX(0); opacity: 0; }
+    15%, 40% { transform: scaleX(1); opacity: 1; }
+  }
+
+  @keyframes roleB {
+    0%, 50%, 100% { transform: scaleX(0); opacity: 0; }
+    65%, 85% { transform: scaleX(1); opacity: 1; }
+  }
+
+  .animate-roleA {
+    transform-origin: left;
+    animation: roleA 4s infinite ease-in-out;
+  }
+
+  .animate-roleB {
+    transform-origin: left;
+    animation: roleB 4s infinite ease-in-out;
+  }
+
+  /* SCROLL */
+  @keyframes scrollSync {
+    0% { transform: translateY(-120%); opacity: 0; }
+    50% { transform: translateY(0%); opacity: 1; }
+    100% { transform: translateY(220%); opacity: 0; }
+  }
+
+  @keyframes scrollSyncText {
+    0%, 100% { color: #94a3b8; }
+    50% { color: #38bdf8; }
+  }
+
+  .animate-scrollLine {
+    animation: scrollSync 2.5s infinite ease-in-out;
+  }
+
+  .animate-scrollSyncText {
+    animation: scrollSyncText 2.5s infinite ease-in-out;
+  }
+
+  /* CURSOR */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+}
