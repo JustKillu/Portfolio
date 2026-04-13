@@ -5,8 +5,6 @@
   "type": "module",
   "homepage": "https://github.com/KilluCorporation/Portfolio-JustKillu",
 "scripts": {
-  "dev": "vite",
-  "build": "vite build",
   "predeploy": "npm run build",
   "deploy": "gh-pages -d dist"
 },
