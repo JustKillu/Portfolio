@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "title": "Ingeniero en Computación",
+    "role1": "Full Stack Developer",
+    "role2": "UX Designer",
+    "description": "Me dedico al <1>desarrollo de software</1>, con experiencia en diseño, implementación y mantenimiento de soluciones digitales eficientes. Mi enfoque es transformar ideas en herramientas tecnológicas sólidas y funcionales.",
+    "view_projects": "Ver Proyectos",
+    "contact": "Hablemos de tu Proyecto",
+    "scroll": "Deslizar"
+  }
+,
+  "projects": {
+    "section_title": "Proyectos",
+    "section_highlight": "Destacados",
+    "view_project": "Ver proyecto →",
+    "items": [
+      {
+        "title": "Sistema de Ventas Automatizado",
+        "company": "FerreVargas C.A",
+        "description": "Plataforma integral para mejorar la sustentabilidad financiera y la eficiencia comercial.",
+        "features": [
+          "FullStack con Express y React",
+          "UI centrada en conversión",
+          "Optimización del flujo de ventas"
+        ]
+      },
+      {
+        "title": "Gestión de Redes e Infraestructura",
+        "company": "Corpoelec",
+        "description": "Administración de dispositivos y puertos para optimizar el flujo de datos.",
+        "features": [
+          "Manejo de múltiples dispositivos",
+          "Resolución de infraestructura crítica",
+          "Optimización de información"
+        ]
+      }
+    ]
+  }
+,
+  "skills": {
+    "title": "Habilidades",
+    "highlight": "Técnicas",
+    "categories": {
+      "fullstack": "Desarrollo Full Stack",
+      "databases": "Bases de Datos",
+      "design": "Diseño y UX",
+      "languages": "Idiomas"
+    },
+    "items": {
+      "optimization": "Optimización",
+      "prototyping": "Prototipado",
+      "architecture": "Arquitectura UI",
+      "spanish": "Español (Nativo)",
+      "english": "Inglés (B1)",
+      "reading": "Lectura técnica"
+    }
+  }
+,
+  "footer": {
+    "title": "Contacto",
+    "description": "Construyendo ideas en software moderno con enfoque en diseño y rendimiento."
+  }
+
+}

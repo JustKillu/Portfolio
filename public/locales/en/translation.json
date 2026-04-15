@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Computer Engineer",
+    "role1": "Full Stack Developer",
+    "role2": "UX Designer",
+    "description": "I specialize in <1>software development</1>, with experience in designing, implementing, and maintaining efficient digital solutions. My focus is on transforming ideas into solid and functional technological tools.",
+    "view_projects": "View Projects",
+    "contact": "Let's talk about your project",
+    "scroll": "Scroll"
+  }
+,
+  "projects": {
+    "section_title": "Featured",
+    "section_highlight": "Projects",
+    "view_project": "View project →",
+    "items": [
+      {
+        "title": "Automated Sales System",
+        "company": "FerreVargas C.A",
+        "description": "Comprehensive platform to improve financial sustainability and commercial efficiency.",
+        "features": [
+          "FullStack with Express and React",
+          "Conversion-centered UI",
+          "Sales flow optimization"
+        ]
+      },
+      {
+        "title": "Network & Infrastructure Management",
+        "company": "Corpoelec",
+        "description": "Administration of devices and ports to optimize data flow.",
+        "features": [
+          "Management of multiple devices",
+          "Critical infrastructure resolution",
+          "Information optimization"
+        ]
+      }
+    ]
+  }
+,
+  "skills": {
+    "title": "Technical",
+    "highlight": "Skills",
+    "categories": {
+      "fullstack": "Full Stack Development",
+      "databases": "Databases",
+      "design": "Design & UX",
+      "languages": "Languages"
+    },
+    "items": {
+      "optimization": "Optimization",
+      "prototyping": "Prototyping",
+      "architecture": "UI Architecture",
+      "spanish": "Spanish (Native)",
+      "english": "English (B1)",
+      "reading": "Technical reading"
+    }
+  }
+,
+  "footer": {
+    "title": "Contact",
+    "description": "Building ideas into modern software with a focus on design and performance."
+  }
+}

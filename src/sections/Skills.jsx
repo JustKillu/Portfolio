@@ -1,91 +1,146 @@
-const skillCategories = [
-  {
-    title: "Desarrollo Full Stack",
-    skills: ["JavaScript", "Python", "React", "Express", "Node.js"],
-    color: "sky"
-  },
-  {
-    title: "Bases de Datos",
-    skills: ["SQL (MySQL)", "NoSQL (MongoDB)", "Optimización"],
-    color: "emerald"
-  },
-  {
-    title: "Diseño y UX",
-    skills: ["Figma", "Prototipado", "Arquitectura UI"],
-    color: "purple"
-  },
-  {
-    title: "Idiomas",
-    skills: [
-      "Español (Nativo)",
-      "Inglés (Intermedio - B1)",
-      "Lectura técnica",
-      "Comunicación oral en desarrollo"
-    ],
-    color: "amber"
-  }
-];
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 const colorMap = {
-  sky: "from-sky-500/10 to-sky-500/0 text-sky-600 border-sky-200",
-  emerald: "from-emerald-500/10 to-emerald-500/0 text-emerald-600 border-emerald-200",
-  purple: "from-purple-500/10 to-purple-500/0 text-purple-600 border-purple-200",
-  amber: "from-amber-500/10 to-amber-500/0 text-amber-600 border-amber-200"
+  sky: "group-hover:border-sky-400 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]",
+  emerald: "group-hover:border-emerald-400 group-hover:shadow-[0_0_20px_rgba(52,211,153,0.3)]",
+  purple: "group-hover:border-purple-400 group-hover:shadow-[0_0_20px_rgba(192,132,252,0.3)]",
+  amber: "group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]",
 };
 
-const SkillCard = ({ category }) => {
-  return (
-    <div className="group relative p-6 rounded-2xl border border-slate-200 bg-white/60 backdrop-blur-md hover:-translate-y-2 hover:shadow-lg transition-all duration-300 overflow-hidden">
+const accentMap = {
+  sky: "bg-sky-400",
+  emerald: "bg-emerald-400",
+  purple: "bg-purple-400",
+  amber: "bg-amber-400",
+};
 
+const SkillCard = ({ category, isDark }) => {
+  return (
+    <div
+      className={`group relative p-6 rounded-xl border backdrop-blur-md transition-all duration-500 shadow-sm hover:-translate-y-2 ${
+        isDark ? "border-white/10 bg-white/5" : "border-black/10 bg-white"
+      } ${colorMap[category.color]} ${category.wide ? "md:col-span-2" : ""}`}
+    >
       <div
-        className={`absolute inset-0 bg-linear-to-br opacity-0 group-hover:opacity-100 transition ${
-          colorMap[category.color]
-        }`}
+        className={`absolute top-0 left-0 w-full h-1 rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${accentMap[category.color]}`}
       />
 
-      <h3 className="relative text-sm uppercase tracking-[0.25em] font-semibold text-slate-700 group-hover:text-slate-900">
+      <h3
+        className={`text-[10px] uppercase tracking-[0.25em] font-semibold transition-colors ${
+          isDark ? "text-white/60 group-hover:text-white" : "text-slate-500 group-hover:text-slate-900"
+        }`}
+      >
         {category.title}
       </h3>
 
-      <div className="relative mt-5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         {category.skills.map((skill) => (
           <span
             key={skill}
-            className="px-3 py-1 text-xs rounded-full bg-slate-100 border border-slate-200 text-slate-600 group-hover:bg-white group-hover:scale-105 transition"
+            className={`px-2.5 py-1 text-[11px] font-medium rounded-md border transition-all duration-300 ${
+              isDark
+                ? "bg-white/5 border-white/10 text-white/60 group-hover:text-white group-hover:bg-white/10"
+                : "bg-slate-50 border-slate-200 text-slate-600 group-hover:text-slate-900 group-hover:bg-slate-100"
+            }`}
           >
             {skill}
           </span>
         ))}
       </div>
-
-      <div className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-transparent via-sky-400/40 to-transparent opacity-0 group-hover:opacity-100 transition" />
     </div>
   );
 };
 
-const Skills = () => {
-  return (
-    <section id="skills" className="py-28 px-6 bg-slate-50">
-      <div className="max-w-6xl mx-auto">
+export default function Skills({ isDark = true }) {
+  const { t } = useTranslation();
 
-        <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-light text-slate-900">
-            Habilidades Técnicas
+  const skillCategories = [
+    {
+      title: t("skills.categories.fullstack"),
+      skills: ["JavaScript", "Python", "React", "Express", "Node.js"],
+      color: "sky",
+      wide: true,
+    },
+    {
+      title: t("skills.categories.databases"),
+      skills: ["SQL (MySQL)", "NoSQL (MongoDB)", t("skills.items.optimization")],
+      color: "emerald",
+      wide: false,
+    },
+    {
+      title: t("skills.categories.design"),
+      skills: ["Figma", t("skills.items.prototyping"), t("skills.items.architecture")],
+      color: "purple",
+      wide: false,
+    },
+    {
+      title: t("skills.categories.languages"),
+      skills: [t("skills.items.spanish"), t("skills.items.english"), t("skills.items.reading")],
+      color: "amber",
+      wide: false,
+    },
+  ];
+
+  return (
+    <section
+      id="skills"
+      className={`relative min-h-screen w-full flex items-center justify-center snap-start px-6 py-20 overflow-hidden ${
+        isDark ? "bg-[#0f0b14]" : "bg-[#f6f7fb]"
+      }`}
+    >
+      <div
+        className={`absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(239,68,68,0.25),transparent_60%)] ${
+          isDark ? "" : "opacity-50"
+        }`}
+      />
+      <div
+        className={`absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(239,68,68,0.18),transparent_70%)] ${
+          isDark ? "opacity-100" : "opacity-40"
+        }`}
+      />
+      <div
+        className={`absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.12),transparent_60%)] ${
+          isDark ? "opacity-100" : "opacity-30"
+        }`}
+      />
+
+      <div className="max-w-4xl w-full mx-auto flex flex-col items-center relative">
+        <div className="mb-12 inline-block text-center">
+          <h2
+            className={`text-2xl md:text-3xl font-light tracking-[0.15em] relative pb-4 uppercase ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
+          >
+            {t("skills.title")} <span className="text-red-400 font-normal">{t("skills.highlight")}</span>
+
+            <div
+              className={`absolute left-0 bottom-0 h-[1.5px] w-full overflow-hidden ${
+                isDark ? "bg-white/10" : "bg-slate-200"
+              }`}
+            >
+              <div className="h-full w-[101%] bg-linear-to-r from-red-500 via-red-400 to-transparent animate-line" />
+            </div>
           </h2>
-          <p className="mt-3 text-slate-500 max-w-xl mx-auto">
-            Tecnologías y conocimientos aplicados en proyectos reales.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {skillCategories.map((category, index) => (
-            <SkillCard key={index} category={category} />
+            <SkillCard key={index} category={category} isDark={isDark} />
           ))}
         </div>
-
       </div>
+
+      <style>{`
+        @keyframes slideLine {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-line {
+          animation: slideLine 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+      `}</style>
     </section>
   );
-};
-
-export default Skills;
+}

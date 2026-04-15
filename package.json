@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "homepage": "https://github.com/KilluCorporation/killucorporation.github.io",
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
@@ -21,8 +21,12 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "^6.0.1",
+    "i18next": "^26.0.4",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "i18next-http-backend": "^3.0.4",
     "lucide-react": "^1.8.0",
     "react-dom": "^19.2.5",
+    "react-i18next": "^17.0.3",
     "simple-icons": "^16.16.0"
   }
 }

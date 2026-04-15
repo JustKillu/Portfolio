@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
+
 const WORDS = ["Xavier Rojas", "Just Killu"];
 
 const FLOATING_SHAPES = Array.from({ length: 45 }).map(() => ({
@@ -10,12 +12,13 @@ const FLOATING_SHAPES = Array.from({ length: 45 }).map(() => ({
   radius: 10 + Math.random() * 25,
   rot: Math.random() * 360,
   rotSpeed: (Math.random() - 0.5) * 0.2,
-  shape: Math.floor(Math.random() * 3)
+  shape: Math.floor(Math.random() * 3),
 }));
 
-export default function Hero() {
+export default function Hero({ isDark, setIsDark }) {
   const [text, setText] = useState("");
   const [particles, setParticles] = useState(FLOATING_SHAPES);
+  const { t } = useTranslation();
 
   const indexRef = useRef(0);
   const charRef = useRef(0);
@@ -59,12 +62,11 @@ export default function Hero() {
       setParticles((prev) =>
         prev.map((p) => {
           const angle = p.angle + time * p.speed;
-
           return {
             ...p,
             x: p.x + Math.cos(angle) * 0.03,
             y: p.y + Math.sin(angle) * 0.03,
-            rot: p.rot + p.rotSpeed
+            rot: p.rot + p.rotSpeed,
           };
         })
       );
@@ -77,8 +79,18 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-100 px-6">
-      <div className="pointer-events-none absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-size-[90px_90px]" />
+    <section
+      className={`relative flex min-h-screen items-center justify-center overflow-hidden px-6 transition-colors duration-500 ${
+        isDark ? "bg-[#0b0a12]" : "bg-slate-100"
+      }`}
+    >
+      <div
+        className={`pointer-events-none absolute inset-0 opacity-[0.05] ${
+          isDark
+            ? "bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)]"
+            : "bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)]"
+        } bg-size-[90px_90px]`}
+      />
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {particles.map((p, i) => (
@@ -92,60 +104,76 @@ export default function Hero() {
               height: `${p.size}px`,
               transform: `rotate(${p.rot}deg)`,
               borderRadius:
-                p.shape === 0
-                  ? "6px"
-                  : p.shape === 1
-                    ? "9999px"
-                    : "0px",
+                p.shape === 0 ? "6px" : p.shape === 1 ? "9999px" : "0px",
               clipPath:
                 p.shape === 2
                   ? "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)"
-                  : "none"
+                  : "none",
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10 text-center max-w-5xl">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-light text-slate-900 min-h-16 sm:min-h-20">
+      <div className="relative z-10 max-w-5xl text-center">
+        <h1
+          className={`min-h-16 text-4xl font-light sm:min-h-20 sm:text-5xl md:text-7xl ${
+            isDark ? "text-white" : "text-slate-900"
+          }`}
+        >
           {text}
-          <span className="text-sky-500 animate-[blink_1.2s_infinite]">|</span>
+          <span className="animate-[blink_1.2s_infinite] text-sky-500">|</span>
         </h1>
 
-        <h2 className="mt-4 sm:mt-5 text-lg sm:text-2xl md:text-4xl font-light text-slate-800">
-          Ingeniero en Computación
+        <h2
+          className={`mt-4 sm:mt-5 text-lg sm:text-2xl md:text-4xl font-light ${
+            isDark ? "text-slate-200" : "text-slate-800"
+          }`}
+        >
+          {t("hero.title")}
         </h2>
 
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-[10px] sm:text-xs uppercase tracking-[0.25em] text-slate-500">
+        <div
+          className={`mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-[10px] sm:text-xs uppercase tracking-[0.25em] ${
+            isDark ? "text-slate-400" : "text-slate-500"
+          }`}
+        >
           <span className="relative pb-1">
-            Full Stack Developer
+            {t("hero.role1")}
             <span className="absolute left-0 bottom-0 h-0.5 w-full bg-sky-500/60 animate-roleA" />
           </span>
 
           <span className="hidden sm:block h-1 w-1 rounded-full bg-sky-500" />
 
           <span className="relative pb-1">
-            UX Designer
+            {t("hero.role2")}
             <span className="absolute left-0 bottom-0 h-0.5 w-full bg-sky-500/60 animate-roleB" />
           </span>
         </div>
 
-        <p className="mx-auto mt-8 sm:mt-10 max-w-2xl text-sm sm:text-base md:text-lg text-slate-600 leading-7 px-2">
-          Me dedico al{" "}
-          <span className="text-sky-600 font-medium">
-            desarrollo de software
-          </span>
-          , con experiencia en diseño, implementación y mantenimiento de
-          soluciones digitales eficientes. Mi enfoque es transformar ideas en
-          herramientas tecnológicas sólidas y funcionales.
+        <p
+          className={`mx-auto mt-8 sm:mt-10 max-w-2xl px-2 text-sm sm:text-base md:text-lg leading-7 ${
+            isDark ? "text-slate-300" : "text-slate-600"
+          }`}
+        >
+          <Trans i18nKey="hero.description">
+            Me dedico al{" "}
+            <span className="text-sky-500 font-medium">
+              desarrollo de software
+            </span>
+            , con experiencia en diseño, implementación y mantenimiento de
+            soluciones digitales eficientes. Mi enfoque es transformar ideas en
+            herramientas tecnológicas sólidas y funcionales.
+          </Trans>
         </p>
 
         <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row justify-center gap-4 sm:gap-5">
           <a
             href="#proyectos"
-            className="px-3 py-2 text-xs uppercase tracking-[0.25em] text-slate-900 relative group"
+            className={`relative px-3 py-2 text-xs uppercase tracking-[0.25em] group ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
           >
-            Ver Proyectos
+            {t("hero.view_projects")}
             <span className="absolute left-0 -bottom-1 h-px w-0 bg-sky-500 transition-all duration-300 group-hover:w-full" />
           </a>
 
@@ -153,22 +181,26 @@ export default function Hero() {
             href="https://www.linkedin.com/in/justkillu"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 text-xs uppercase tracking-[0.25em] text-slate-900 relative group flex items-center gap-2"
+            className={`relative flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.25em] group ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
           >
-            <img src="/linkedin.svg" alt="LinkedIn" className="w-4 h-4" />
-            Hablemos de tu Proyecto
+            <img src="/linkedin.svg" alt="LinkedIn" className="h-4 w-4" />
+            {t("hero.contact")}
             <span className="absolute left-0 -bottom-1 h-px w-0 bg-sky-500 transition-all duration-300 group-hover:w-full" />
           </a>
         </div>
       </div>
 
       <a
-        href="#proyectos"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.35em]"
+        href="#skills"
+        className={`absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.65rem] uppercase tracking-[0.35em] ${
+          isDark ? "text-slate-400" : "text-slate-500"
+        }`}
       >
-        <span className="animate-scrollSyncText">Deslizar</span>
+        <span className="animate-scrollSyncText">{t("hero.scroll")}</span>
         <span className="relative h-10 w-px overflow-hidden">
-          <span className="absolute inset-0 bg-sky-500 animate-scrollLine" />
+          <span className="absolute inset-0 animate-scrollLine bg-sky-500" />
         </span>
       </a>
     </section>
