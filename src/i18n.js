@@ -11,14 +11,12 @@ i18n
     fallbackLng: 'es', 
     debug: false,
     interpolation: {
-      escapeValue: false, // React ya se encarga de prevenir XSS
+      escapeValue: false,
     },
     backend: {
-      // Ruta donde i18next buscará tus archivos de traducción
       loadPath: '/locales/{{lng}}/translation.json',
     },
-    detection: {
-      // Orden en que intentará detectar el idioma (cookie, localStorage, etc)
+    detection: { 
       order: ['queryString', 'cookie', 'localStorage', 'navigator', 'path'],
       caches: ['localStorage', 'cookie'],
     }
