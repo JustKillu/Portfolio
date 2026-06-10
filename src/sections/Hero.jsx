@@ -185,7 +185,7 @@ export default function Hero({ isDark, setIsDark }) {
               isDark ? "text-white" : "text-slate-900"
             }`}
           >
-            <img src="/linkedin.svg" alt="LinkedIn" className="h-4 w-4" />
+            <img src={`${import.meta.env.BASE_URL}linkedin.svg`} alt="LinkedIn" className="h-4 w-4" />
             {t("hero.contact")}
             <span className="absolute left-0 -bottom-1 h-px w-0 bg-sky-500 transition-all duration-300 group-hover:w-full" />
           </a>
