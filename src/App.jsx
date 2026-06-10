@@ -18,22 +18,91 @@ const colorMap = {
   purple: "bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]",
 };
 
+// COMPONENTE MEJORADO: Selector con menú desplegable e indicador activo
 const LanguageSwitch = ({ isDark }) => {
   const { i18n } = useTranslation();
-  const currentLang = i18n.language;
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  
+  const currentLang = i18n.language || "es";
+
+  const languages = [
+    { code: "es", label: "Español" },
+    { code: "en", label: "English" },
+  ];
+
+  const handleLanguageChange = (langCode) => {
+    i18n.changeLanguage(langCode);
+    setIsOpen(false);
+  };
+
+  // Cierra el menú si se hace clic fuera de él
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <div className="fixed top-6 left-10 z-100 flex gap-2">
+    <div ref={dropdownRef} className="fixed top-6 left-10 z-100 flex flex-col items-start font-sans">
+      {/* Botón Principal (Muestra idioma actual) */}
       <button
-        onClick={() => i18n.changeLanguage(currentLang === "es" ? "en" : "es")}
-        className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-md border transition-all duration-300 ${
-          isDark 
-            ? "border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white" 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded-md border flex items-center gap-2 transition-all duration-300 ${
+          isDark
+            ? "border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"
             : "border-black/10 bg-black/5 text-slate-600 hover:bg-black/10 hover:text-slate-900"
         }`}
       >
-        {currentLang === "es" ? "EN" : "ES"}
+        <span>🌐 {currentLang}</span>
+        <svg
+          className={`w-2.5 h-2.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
+        </svg>
       </button>
+
+      {/* Lista Desplegable con Animación suave */}
+      <div
+        className={`absolute top-full mt-2 w-32 rounded-md border shadow-xl backdrop-blur-md transition-all duration-200 origin-top-left ${
+          isOpen 
+            ? "opacity-100 scale-100 pointer-events-auto" 
+            : "opacity-0 scale-95 pointer-events-none"
+        } ${
+          isDark 
+            ? "bg-[#131121]/90 border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]" 
+            : "bg-white/90 border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+        }`}
+      >
+        <div className="py-1">
+          {languages.map((lang) => {
+            const isActive = currentLang.startsWith(lang.code);
+            return (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang.code)}
+                className={`w-full text-left px-3 py-2 text-xs transition-colors duration-200 flex items-center justify-between ${
+                  isActive 
+                    ? isDark ? "text-sky-400 font-semibold bg-white/5" : "text-sky-600 font-semibold bg-black/5"
+                    : isDark ? "text-white/60 hover:bg-white/10 hover:text-white" : "text-slate-600 hover:bg-black/5 hover:text-slate-900"
+                }`}
+              >
+                <span>{lang.label}</span>
+                {isActive && (
+                  <span className={`w-1.5 h-1.5 rounded-full ${isDark ? "bg-sky-400" : "bg-sky-500"}`} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
@@ -165,7 +234,7 @@ function App() {
               {t('footer.description')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 text-xs">
-              <a href="https://linkedin.com/in/justkillu" target="_blank" className="hover:text-sky-500 transition">LinkedIn</a>
+              <a href="https://linkedin.com/in/justkillu" target="_blank" rel="noreferrer" className="hover:text-sky-500 transition">LinkedIn</a>
               <a href="mailto:test@email.com" className="hover:text-sky-500 transition">Email</a>
             </div>
             <div className="pt-6 text-[10px] uppercase tracking-[0.25em] opacity-50">
