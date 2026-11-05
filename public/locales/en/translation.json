@@ -13,11 +13,17 @@
     "section_title": "Featured",
     "section_highlight": "Projects",
     "view_project": "View project →",
+    "back_to_projects": "Back to projects",
+    "video_title": "Project video",
+    "video_missing": "The YouTube video for this project will be added here soon.",
+    "video_invalid": "The configured YouTube link is invalid.",
     "items": [
       {
         "title": "Automated Sales System",
         "company": "FerreVargas C.A",
         "description": "Comprehensive platform to improve financial sustainability and commercial efficiency.",
+        "videoUrl": "https://drive.google.com/file/d/10-BbsZ7NaqxiqwO_zo6WuExJucbF2mPO/view?usp=sharing",
+        "featuresTitle": "Key features",
         "features": [
           "FullStack with Express and React",
           "Conversion-centered UI",
@@ -28,6 +34,8 @@
         "title": "Network & Infrastructure Management",
         "company": "Corpoelec",
         "description": "Administration of devices and ports to optimize data flow.",
+        "videoUrl": "https://drive.google.com/file/d/1yGWx1BeKOubrNU8FPszKS2cODWTfQG5u/view?usp=sharing",
+        "featuresTitle": "Key features",
         "features": [
           "Management of multiple devices",
           "Critical infrastructure resolution",

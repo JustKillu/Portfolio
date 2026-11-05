@@ -13,11 +13,17 @@
     "section_title": "Proyectos",
     "section_highlight": "Destacados",
     "view_project": "Ver proyecto →",
+    "back_to_projects": "Volver a proyectos",
+    "video_title": "Video del proyecto",
+    "video_missing": "El video de YouTube de este proyecto se agregará aquí próximamente.",
+    "video_invalid": "El enlace de YouTube configurado no es válido.",
     "items": [
       {
         "title": "Sistema de Ventas Automatizado",
         "company": "FerreVargas C.A",
         "description": "Plataforma integral para mejorar la sustentabilidad financiera y la eficiencia comercial.",
+        "videoUrl": "https://drive.google.com/file/d/10-BbsZ7NaqxiqwO_zo6WuExJucbF2mPO/view?usp=sharing",
+        "featuresTitle": "Características principales",
         "features": [
           "FullStack con Express y React",
           "UI centrada en conversión",
@@ -28,6 +34,8 @@
         "title": "Gestión de Redes e Infraestructura",
         "company": "Corpoelec",
         "description": "Administración de dispositivos y puertos para optimizar el flujo de datos.",
+        "videoUrl": "https://drive.google.com/file/d/1yGWx1BeKOubrNU8FPszKS2cODWTfQG5u/view?usp=sharing",
+        "featuresTitle": "Características principales",
         "features": [
           "Manejo de múltiples dispositivos",
           "Resolución de infraestructura crítica",

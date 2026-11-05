@@ -222,7 +222,7 @@ function App() {
         </section>
 
         <section id="projects" className="min-h-svh snap-start">
-          <Projects isDark={isDark} />
+          <Projects isDark={isDark} isActive={activeSection === 2} />
         </section>
 
         <section id="footer" className="min-h-svh snap-start pb-[15svh] flex items-center justify-center px-6 py-12">

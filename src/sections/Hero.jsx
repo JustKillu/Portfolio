@@ -155,15 +155,12 @@ export default function Hero({ isDark, setIsDark }) {
             isDark ? "text-slate-300" : "text-slate-600"
           }`}
         >
-          <Trans i18nKey="hero.description">
-            Me dedico al{" "}
-            <span className="text-sky-500 font-medium">
-              desarrollo de software
-            </span>
-            , con experiencia en diseño, implementación y mantenimiento de
-            soluciones digitales eficientes. Mi enfoque es transformar ideas en
-            herramientas tecnológicas sólidas y funcionales.
-          </Trans>
+          <Trans
+            i18nKey="hero.description"
+            components={{
+              2: <span className="text-sky-500 font-medium" />
+            }}
+          />
         </p>
 
         <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row justify-center gap-4 sm:gap-5">
