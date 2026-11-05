@@ -99,7 +99,7 @@ El proyecto incluye un comando de despliegue con `gh-pages`. Ejecuta:
 npm run deploy
 ```
 
-La ruta base de producción está configurada como `/Portfolio-JustKillu/` en `vite.config.js`. Los recursos y traducciones usan esa ruta base automáticamente. Si se publica bajo otro nombre de repositorio, actualiza la ruta en `vite.config.js`. Después, configura GitHub Pages para servir la rama `gh-pages`.
+La ruta base de producción está configurada como `/Portfolio/` en `vite.config.js`, coincidiendo con la URL publicada. Los recursos y traducciones usan esa ruta base automáticamente. Si cambia la URL del sitio, actualiza la ruta en `vite.config.js`. Después, configura GitHub Pages para servir la rama `gh-pages`.
 
 ## Personalización
 
